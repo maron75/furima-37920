@@ -4,8 +4,8 @@
 
 | Column             | Type       | Options                 |
 | ------------------ | ---------- | ----------------------- |
-| nickname           | string     | null:false ,unique:true |
-| email              | string     | null:false              |
+| nickname           | string     | null:false              |
+| email              | string     | null:false ,unique:true |
 | encrypted_password | string     | null:false              |
 | family_name        | string     | null:false              |
 | first_name         | string     | null:false              |
@@ -14,8 +14,8 @@
 | birth_day          | date       | null:false              |
 
 ### Association
-* has_one:buys  dependent::destroy
-* has_many:items dependent::destroy
+* has_one:buy  dependent::destroy
+* has_many:item dependent::destroy
 
 
 
@@ -25,7 +25,7 @@
 | Column             | Type       | Options                 |
 | ------------------ | ---------- | ----------------------- |
 | zip_code           | integer    | null:false              |
-| prefecture         | string     | null:false              |
+| region             | string     | null:false              |
 | city               | string     | null:false              |
 | address            | string     | null:false              |
 | building_name      | string     |                         |
@@ -33,7 +33,7 @@
 | buy                | string     | null:false ,foreign_key:true |
 
 ### Association
-* belongs_to:buys
+* belongs_to:buy
 
 
 
@@ -54,7 +54,7 @@
 | user               | string     | null:false ,foreign_key:true  |
 
 ### Association
-* has_one:buys  dependent::destroy
+* has_one:buy
 
 
 
@@ -70,7 +70,7 @@
 
 ### Association
 * belongs_to:user  
-* belongs_to:items  
+* belongs_to:item 
 * has_one:customer dependent::destroy
 
 
