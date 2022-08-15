@@ -14,8 +14,8 @@
 | birth_day          | date       | null:false              |
 
 ### Association
-* has_many:items  dependent::destroy
-* has_many:buys  dependent::destroy
+* has_one:buys  dependent::destroy
+* has_many:items dependent::destroy
 
 
 
@@ -24,12 +24,16 @@
 ## customersテーブル
 | Column             | Type       | Options                 |
 | ------------------ | ---------- | ----------------------- |
+| zip_code           | integer    | null:false              |
+| prefecture         | string     | null:false              |
 | city               | string     | null:false              |
 | address            | string     | null:false              |
 | building_name      | string     |                         |
 | phone_number       | string     | null:false              | 
 | buy                | string     | null:false ,foreign_key:true |
 
+### Association
+* belongs_to:buys
 
 
 
@@ -47,11 +51,10 @@
 | region_id          | integer    | null:false                    |
 | shipping_days_id   | integer    | null:false                    |
 | price              | integer    | null:false                    |
-| commission         | string     | null:false                    |
-| benefit            | string     | null:false                    |
+| user               | string     | null:false ,foreign_key:true  |
 
 ### Association
-* belong_to:user  dependent::destroy
+* has_one:buys  dependent::destroy
 
 
 
@@ -66,8 +69,9 @@
 
 
 ### Association
-* belongs_to:user  dependent::destroy
-
+* belongs_to:user  
+* belongs_to:items  
+* has_one:customer dependent::destroy
 
 
 
