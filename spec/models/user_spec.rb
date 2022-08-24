@@ -90,10 +90,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
-        @user.password = '123456'
-        @user.password_confirmation = '123456'
+        @user.password = '123abc'
+        @user.password_confirmation = '123abcd'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = 'abc12'
