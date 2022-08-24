@@ -91,9 +91,9 @@ RSpec.describe User, type: :model do
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456'
-        @user.password_confirmation = '1234567'
+        @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = 'abc12'
@@ -106,6 +106,18 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      end
+      it 'passwordが数字だけだと登録できない' do
+        @user.password ='111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+      it 'passwordが全角だと登録できない' do
+        @user.password = 'ああああああ'
+        @user.password_confirmation = 'ああああああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
       end
     end
   end
