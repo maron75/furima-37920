@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :encrypted_password, presence: true 
-  validates :family_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-  validates :family_name_kana,presence: true, format: { with: /\p{katakana}/}
-  validates :first_name_kana,presence: true, format: { with: /\p{katakana}/}
+  validates :encrypted_password, presence: true
+  validates :family_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :family_name_kana, presence: true, format: { with: /\p{katakana}/ }
+  validates :first_name_kana, presence: true, format: { with: /\p{katakana}/ }
   validates :birthday, presence: true
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
 end
